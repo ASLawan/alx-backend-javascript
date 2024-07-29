@@ -13,8 +13,8 @@ const Utils = {
 			case "DIVIDE":
 				if (roundedB === 0) {
 					return "Error";
-				return roundedA / roundedB;
 				}
+				return roundedA / roundedB;
 			default:
 				throw new Error("Invalid type");
 		}
