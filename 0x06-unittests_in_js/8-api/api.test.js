@@ -1,26 +1,22 @@
 #!/usr/bin/env node
 
+const expect = require('chai').expect;
 const request = require('request');
-const app = require('./api');
-const { expect } = require('chai');
 
 
-describe("Index page", () => {
-
-	const url = "http://localhost:7865";
-
-
-	it("should return the correct status code", (done) => {
-		request.get(`${url}/`, (error, resp, body) => {
-			expect(resp.statusCode).to.equal(200);
-			done();
-		});
-	});
-
-	it("should return the correct message", (done) => {
-		request.get(`${url}/`, (error, resp, body) => {
-			expect(body).to.equal("Welcome to the payment system");
-			done();
-		});
-	});
-});
+describe('Index page integration test', () => {
+    describe('GET /', () => {
+      it('Code: 200 | Body: Welcome to the payment system', (done) => {
+        const options = {
+          url: 'http://localhost:7865',
+          method: 'GET',
+        };
+  
+        request(options, function (error, response, body) {
+          expect(response.statusCode).to.equal(200);
+          expect(body).to.equal('Welcome to the payment system');
+          done();
+        });
+      });
+    });
+  });
